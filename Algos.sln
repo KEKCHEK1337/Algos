@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lab 4", "Lab 4\Lab 4.vcxpro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lab5", "Lab5\Lab5.vcxproj", "{2B3A5F84-CCBC-4286-98C0-E610076F9A36}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lab6", "Lab6\Lab6.vcxproj", "{18DE75F8-C258-482A-A351-05E3A3456F47}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +43,14 @@ Global
 		{2B3A5F84-CCBC-4286-98C0-E610076F9A36}.Release|x64.Build.0 = Release|x64
 		{2B3A5F84-CCBC-4286-98C0-E610076F9A36}.Release|x86.ActiveCfg = Release|Win32
 		{2B3A5F84-CCBC-4286-98C0-E610076F9A36}.Release|x86.Build.0 = Release|Win32
+		{18DE75F8-C258-482A-A351-05E3A3456F47}.Debug|x64.ActiveCfg = Debug|x64
+		{18DE75F8-C258-482A-A351-05E3A3456F47}.Debug|x64.Build.0 = Debug|x64
+		{18DE75F8-C258-482A-A351-05E3A3456F47}.Debug|x86.ActiveCfg = Debug|Win32
+		{18DE75F8-C258-482A-A351-05E3A3456F47}.Debug|x86.Build.0 = Debug|Win32
+		{18DE75F8-C258-482A-A351-05E3A3456F47}.Release|x64.ActiveCfg = Release|x64
+		{18DE75F8-C258-482A-A351-05E3A3456F47}.Release|x64.Build.0 = Release|x64
+		{18DE75F8-C258-482A-A351-05E3A3456F47}.Release|x86.ActiveCfg = Release|Win32
+		{18DE75F8-C258-482A-A351-05E3A3456F47}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
