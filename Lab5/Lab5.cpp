@@ -234,8 +234,7 @@ private:
 };
 
 
-void menu() 
-{
+int main() {
     setlocale(LC_ALL, "RU");
     AVLTree tree;
     int choice;
@@ -308,10 +307,6 @@ void menu()
             std::cout << "Неверный выбор. Попробуйте снова.\n";
         }
     } while (choice != 6);
-}
-
-int main() {
-    menu();
     return 0;
 }
 
