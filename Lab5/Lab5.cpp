@@ -2,6 +2,7 @@
 #include <string>
 #include <algorithm>
 
+//Структура данных для хранения информации о студентах
 struct Student 
 {
     int id;
@@ -14,6 +15,7 @@ struct Student
         : id(id), name(name), course(course), enrollmentDate(enrollmentDate), contactInfo(contactInfo) {}
 };
 
+//Узел АВЛ-дерева
 struct AVLNode 
 {
     Student student;
@@ -25,28 +27,35 @@ struct AVLNode
         : student(student), left(nullptr), right(nullptr), height(1) {}
 };
 
-class AVLTree {
+//Функции для работы с АВЛ-деревом
+class AVLTree 
+{
 public:
     AVLTree() : root(nullptr) {}
 
-    void insert(const Student& student) {
+    void insert(const Student& student) 
+    {
         root = insert(root, student);
     }
 
-    void display() const {
+    void display() const
+    {
         display(root, 0);
     }
 
-    void clear() {
+    void clear()
+    {
         clear(root);
         root = nullptr;
     }
 
-    Student* search(int id) const {
+    Student* search(int id) const 
+    {
         return search(root, id);
     }
 
-    void remove(int id) {
+    void remove(int id) 
+    {
         root = remove(root, id);
     }
 
@@ -67,7 +76,8 @@ private:
         }
     }
 
-    AVLNode* rotateRight(AVLNode* y) {
+    AVLNode* rotateRight(AVLNode* y) 
+    {
         AVLNode* x = y->left;
         AVLNode* T2 = x->right;
 
@@ -93,39 +103,48 @@ private:
         return y;
     }
 
-    AVLNode* insert(AVLNode* node, const Student& student) {
-        if (!node) {
+    AVLNode* insert(AVLNode* node, const Student& student) 
+    {
+        if (!node) 
+        {
             return new AVLNode(student);
         }
 
-        if (student.id < node->student.id) {
+        if (student.id < node->student.id) 
+        {
             node->left = insert(node->left, student);
         }
-        else if (student.id > node->student.id) {
+        else if (student.id > node->student.id) 
+        {
             node->right = insert(node->right, student);
         }
-        else {
-            return node; // Duplicate IDs are not allowed
+        else 
+        {
+            return node; // Копирование ID не допустимо
         }
 
         updateHeight(node);
 
         int balance = balanceFactor(node);
 
-        if (balance > 1 && student.id < node->left->student.id) {
+        if (balance > 1 && student.id < node->left->student.id)
+        {
             return rotateRight(node);
         }
 
-        if (balance < -1 && student.id > node->right->student.id) {
+        if (balance < -1 && student.id > node->right->student.id) 
+        {
             return rotateLeft(node);
         }
 
-        if (balance > 1 && student.id > node->left->student.id) {
+        if (balance > 1 && student.id > node->left->student.id) 
+        {
             node->left = rotateLeft(node->left);
             return rotateRight(node);
         }
 
-        if (balance < -1 && student.id < node->right->student.id) {
+        if (balance < -1 && student.id < node->right->student.id) 
+        {
             node->right = rotateRight(node->right);
             return rotateLeft(node);
         }
@@ -133,56 +152,72 @@ private:
         return node;
     }
 
-    void display(AVLNode* node, int indent) const {
-        if (node) {
+    void display(AVLNode* node, int indent) const
+    {
+        if (node) 
+        {
             display(node->right, indent + 4);
             std::cout << std::string(indent, ' ') << node->student.id << ": " << node->student.name << std::endl;
             display(node->left, indent + 4);
         }
     }
 
-    void clear(AVLNode* node) {
-        if (node) {
+    void clear(AVLNode* node)
+    {
+        if (node)
+        {
             clear(node->left);
             clear(node->right);
             delete node;
         }
     }
 
-    Student* search(AVLNode* node, int id) const {
-        if (!node || node->student.id == id) {
+    Student* search(AVLNode* node, int id) const 
+    {
+        if (!node || node->student.id == id) 
+        {
             return node ? &node->student : nullptr;
         }
 
-        if (id < node->student.id) {
+        if (id < node->student.id) 
+        {
             return search(node->left, id);
         }
-        else {
+        else
+        {
             return search(node->right, id);
         }
     }
 
-    AVLNode* minValueNode(AVLNode* node) {
+    AVLNode* minValueNode(AVLNode* node) 
+    {
         AVLNode* current = node;
-        while (current->left) {
+        while (current->left)
+        {
             current = current->left;
         }
         return current;
     }
 
-    AVLNode* remove(AVLNode* node, int id) {
-        if (!node) {
+    AVLNode* remove(AVLNode* node, int id) 
+    {
+        if (!node)
+        {
             return node;
         }
 
-        if (id < node->student.id) {
+        if (id < node->student.id) 
+        {
             node->left = remove(node->left, id);
         }
-        else if (id > node->student.id) {
+        else if (id > node->student.id) 
+        {
             node->right = remove(node->right, id);
         }
-        else {
-            if (!node->left || !node->right) {
+        else 
+        {
+            if (!node->left || !node->right) 
+            {
                 AVLNode* temp = node->left ? node->left : node->right;
 
                 if (!temp) {
@@ -194,7 +229,8 @@ private:
                 }
                 delete temp;
             }
-            else {
+            else 
+            {
                 AVLNode* temp = minValueNode(node->right);
 
                 node->student = temp->student;
@@ -203,7 +239,8 @@ private:
             }
         }
 
-        if (!node) {
+        if (!node)
+        {
             return node;
         }
 
@@ -211,20 +248,24 @@ private:
 
         int balance = balanceFactor(node);
 
-        if (balance > 1 && balanceFactor(node->left) >= 0) {
+        if (balance > 1 && balanceFactor(node->left) >= 0)
+        {
             return rotateRight(node);
         }
 
-        if (balance > 1 && balanceFactor(node->left) < 0) {
+        if (balance > 1 && balanceFactor(node->left) < 0)
+        {
             node->left = rotateLeft(node->left);
             return rotateRight(node);
         }
 
-        if (balance < -1 && balanceFactor(node->right) <= 0) {
+        if (balance < -1 && balanceFactor(node->right) <= 0)
+        {
             return rotateLeft(node);
         }
 
-        if (balance < -1 && balanceFactor(node->right) > 0) {
+        if (balance < -1 && balanceFactor(node->right) > 0)
+        {
             node->right = rotateRight(node->right);
             return rotateLeft(node);
         }
@@ -234,7 +275,8 @@ private:
 };
 
 
-int main() {
+int main()
+{
     setlocale(LC_ALL, "RU");
     AVLTree tree;
     int choice;
